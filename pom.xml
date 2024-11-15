@@ -6,7 +6,7 @@
 
     <groupId>io.github.ashokkumarchoppadandi</groupId>
     <artifactId>java-examples</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -36,22 +36,6 @@
     </scm>
 
     <distributionManagement>
-        <!--<snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>-->
-        <!--<snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>-->
         <repository>
             <id>central</id>
             <url>https://central.sonatype.com</url>
@@ -100,7 +84,7 @@
                 <version>3.5.0</version>
             </plugin>
 
-            <!-- Java Code Coverage Plugin -->
+            <!-- Java Code Coverage (Jacoco) Plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -131,7 +115,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.01</minimum>
+                                            <minimum>0.8</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -175,7 +159,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
+                <version>3.2.7</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -184,30 +168,11 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>232B9818</keyname>
-                            <passphrase>232B9818</passphrase>
-                            <!--<passphraseServerId>${gpg.keyname}</passphraseServerId>-->
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
+
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Nexus Staging Maven Plugin -->
-            <!--<plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>-->
 
             <!-- Sonatype Plugin to publish the artifacts to maven central repository -->
             <plugin>

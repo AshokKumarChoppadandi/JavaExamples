@@ -20,6 +20,12 @@ public class BasicCalculatorTest {
         Assertions.assertEquals(actual, Math.addExact(10, 20));
     }
 
+    @Test
+    public void testPowerOfANumber() {
+        double actual = basicCalculator.power(10, 3);
+        Assertions.assertEquals(actual, Math.pow(10, 3));
+    }
+
     @AfterAll
     public static void exitUnitTests() {
         System.out.println("All unit tests execution completed.");
