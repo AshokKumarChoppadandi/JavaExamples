@@ -51,7 +51,8 @@ jobs:
 
       # Build the Maven Project
       - name: Step 3 - Build with Maven Project
-        run: mvn -B package --file pom.xml
+        # run: mvn -B package --file pom.xml
+        run: mvn clean install
 
       - name: Step 4 - List the built files
         run: |
