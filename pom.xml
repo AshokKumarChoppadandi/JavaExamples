@@ -35,11 +35,20 @@
         <url>http://github.com/AshokKumarChoppadandi/JavaExamples/tree/main</url>
     </scm>
 
-    <distributionManagement>
+    <!--<distributionManagement>
         <repository>
             <id>central</id>
             <url>https://central.sonatype.com</url>
         </repository>
+    </distributionManagement>-->
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Ashok Kumar Choppadandi Maven Packages</name>
+            <url>https://maven.pkg.github.com/AshokKumarChoppadandi/JavaExamples</url>
+        </repository>
+
     </distributionManagement>
 
     <properties>
@@ -156,7 +165,7 @@
             </plugin>
 
             <!-- Maven GPG Plugin -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>3.2.7</version>
@@ -169,26 +178,26 @@
                         </goals>
                         <configuration>
                             <gpgArguments>
-                                <arg>--pinentry-mode</arg>
+                                <arg>&#45;&#45;pinentry-mode</arg>
                                 <arg>loopback</arg>
                             </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <!-- Sonatype Plugin to publish the artifacts to maven central repository -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
                 <version>0.6.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
-                    <!--<autoPublish>true</autoPublish>
-                    <waitUntil>published</waitUntil>-->
+                    &lt;!&ndash;<autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>&ndash;&gt;
                 </configuration>
-            </plugin>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
