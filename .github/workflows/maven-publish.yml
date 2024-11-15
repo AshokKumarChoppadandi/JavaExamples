@@ -46,8 +46,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'zulu'
-          # server-id: central # Value of the distributionManagement/repository/id field of the pom.xml
+          server-id: central # Value of the distributionManagement/repository/id field of the pom.xml
           # settings-path: ${{ github.workspace }} # location for the settings.xml file
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_PASSWORD
 
       # Build the Maven Project
       - name: Step 3 - Build with Maven Project
@@ -60,7 +62,14 @@ jobs:
           ls -a
 
       # Publish the Maven Project to GitHub Packages
-      - name: Publish to GitHub Packages Apache Maven
+      # - name: Step 5 - Publish to GitHub Packages Apache Maven
+      #   run: mvn --batch-mode deploy
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+
+      # Publish the Maven Project to Maven Central
+      - name: Step 5 - Publish to GitHub Packages to Maven Central
         run: mvn --batch-mode deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
