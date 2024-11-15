@@ -51,7 +51,7 @@ jobs:
           server-password: MAVEN_PASSWORD
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: SIGN_KEY_PASS
-          settings-path: settings.xml # location for the settings.xml file
+          settings-path: ./ # location for the settings.xml file
 
       # Build the Maven Project
       # - name: Step 3 - Build with Maven Project
