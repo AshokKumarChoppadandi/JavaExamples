@@ -163,7 +163,7 @@
             </plugin>
 
             <!-- Maven GPG Plugin -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>3.2.7</version>
@@ -176,13 +176,13 @@
                         </goals>
                         <configuration>
                             <gpgArguments>
-                                <arg>&#45;&#45;pinentry-mode</arg>
+                                <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
                             </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
             <!-- Sonatype Plugin to publish the artifacts to maven central repository -->
             <plugin>
