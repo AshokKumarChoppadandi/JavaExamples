@@ -57,7 +57,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <publish.to.central>true</publish.to.central>
+        <skip.publish.to.central>true</skip.publish.to.central>
     </properties>
 
     <dependencies>
@@ -181,13 +181,13 @@
                         </goals>
                          <configuration>
                              <!--This is required to build the Maven Artifact in local-->
-                             <!--<keyname>${gpg.keyname}</keyname>
+                             <keyname>${gpg.keyname}</keyname>
                              <passphrase>${gpg.keyname}</passphrase>
                              <gpgArguments>
-                                <arg>&#45;&#45;pinentry-mode</arg>
+                                <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
-                            </gpgArguments>-->
-                            <signer>bc</signer>
+                            </gpgArguments>
+                            <!--<signer>bc</signer>-->
                         </configuration>
                     </execution>
                 </executions>
@@ -203,7 +203,7 @@
                     <publishingServerId>central</publishingServerId>
                     <!--<autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil>-->
-                    <skipPublishing>${publish.to.central}</skipPublishing>
+                    <skipPublishing>${skip.publish.to.central}</skipPublishing>
                 </configuration>
             </plugin>
 

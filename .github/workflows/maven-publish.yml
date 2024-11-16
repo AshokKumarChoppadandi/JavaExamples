@@ -46,6 +46,7 @@ jobs:
         with:
           java-version: '8'
           distribution: 'zulu'
+          settings-path: .
 
       # Publish the Maven Project to GitHub Packages
       - name: Step 3 - Publish Maven Artifacts to GitHub Packages
