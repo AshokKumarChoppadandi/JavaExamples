@@ -195,20 +195,29 @@
             </plugin>
 
             <!-- Sonatype Plugin to publish the artifacts to maven central repository -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
                 <version>0.6.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <!--<publishingServerId>central</publishingServerId>-->
+                    &lt;!&ndash;<publishingServerId>central</publishingServerId>&ndash;&gt;
                     <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
-                    <!--<autoPublish>true</autoPublish>
-                    <waitUntil>published</waitUntil>-->
+                    &lt;!&ndash;<autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>&ndash;&gt;
                     <skipPublishing>${skip.publish.to.central}</skipPublishing>
                     <failOnBuildFailure>${fail.on.build.failure}</failOnBuildFailure>
                 </configuration>
-            </plugin>
+                <executions>
+                    <execution>
+                        <id>deploy-central</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal></goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
