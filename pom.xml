@@ -201,12 +201,19 @@
                 <version>0.6.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <publishingServerId>central</publishingServerId>
+                    <!--<publishingServerId>central</publishingServerId>-->
+                    <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
                     <!--<autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil>-->
                     <skipPublishing>${skip.publish.to.central}</skipPublishing>
                     <failOnBuildFailure>${fail.on.build.failure}</failOnBuildFailure>
                 </configuration>
+                <!--<executions>
+                    <execution>
+                        <id>skip-publish</id>
+                        <phase/>
+                    </execution>
+                </executions>-->
             </plugin>
 
             <plugin>
