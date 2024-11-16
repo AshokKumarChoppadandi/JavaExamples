@@ -156,6 +156,32 @@
                 </executions>
             </plugin>
 
+            <!-- Maven GPG Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.7</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <!--This is required to build the Maven Artifact in local-->
+                            <!--<keyname>${gpg.keyname}</keyname>
+                            <passphrase>${gpg.keyname}</passphrase>
+                            <gpgArguments>
+                               <arg>&#45;&#45;pinentry-mode</arg>
+                               <arg>loopback</arg>
+                           </gpgArguments>-->
+                            <signer>bc</signer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
