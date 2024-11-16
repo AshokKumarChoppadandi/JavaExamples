@@ -58,6 +58,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skip.publish.to.central>true</skip.publish.to.central>
+        <fail.on.build.failure>false</fail.on.build.failure>
     </properties>
 
     <dependencies>
@@ -204,6 +205,7 @@
                     <!--<autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil>-->
                     <skipPublishing>${skip.publish.to.central}</skipPublishing>
+                    <failOnBuildFailure>${fail.on.build.failure}</failOnBuildFailure>
                 </configuration>
             </plugin>
 

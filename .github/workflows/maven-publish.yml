@@ -46,7 +46,7 @@ jobs:
         with:
           java-version: '8'
           distribution: 'zulu'
-          settings-path: .
+          # settings-path: .
 
       # Publish the Maven Project to GitHub Packages
       - name: Step 3 - Publish Maven Artifacts to GitHub Packages
@@ -68,7 +68,7 @@ jobs:
 
       # Publish the Maven Project to Maven Central
       - name: Step 5 - Publish Maven Artifacts to Maven Central
-        run: mvn -Dpublish.to.central=false --batch-mode deploy
+        run: mvn -Dpublish.to.central=false -Dfail.on.build.failure=true --batch-mode deploy
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
