@@ -40,21 +40,21 @@ jobs:
       - name:  Step 1 - Checking out to main branch.
         uses: actions/checkout@v4
 
-      # # Setting up the JDK 8
-      # - name: Step 2 - Set up JDK 8 for publishing to GitHub packages
-      #   uses: actions/setup-java@v4
-      #   with:
-      #     java-version: '8'
-      #     distribution: 'zulu'
-      #     # settings-path: .
-      #
-      # # Publish the Maven Project to GitHub Packages
-      # - name: Step 3 - Publish Maven Artifacts to GitHub Packages
-      #   run: mvn --batch-mode deploy
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
-      #     MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-      #     MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+      # Setting up the JDK 8
+      - name: Step 2 - Set up JDK 8 for publishing to GitHub packages
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'zulu'
+          # settings-path: .
+
+      # Publish the Maven Project to GitHub Packages
+      - name: Step 3 - Publish Maven Artifacts to GitHub Packages
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       # Setting up the JDK  8
       - name: Step 4 - Set up JDK 8 for publishing to Maven Central

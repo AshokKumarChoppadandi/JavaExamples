@@ -63,6 +63,25 @@
 
         <profile>
             <id>prod</id>
+            <build>
+                <plugins>
+                    <!-- Sonatype Plugin to publish the artifacts to maven central repository -->
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.6.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <!--<centralBaseUrl>https://central.sonatype.com</centralBaseUrl>-->
+                            <!--<autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>-->
+                            <skipPublishing>${skip.publish.to.central}</skipPublishing>
+                            <failOnBuildFailure>${fail.on.build.failure}</failOnBuildFailure>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
             <distributionManagement>
                 <repository>
                     <id>central</id>
@@ -212,22 +231,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <!-- Sonatype Plugin to publish the artifacts to maven central repository -->
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.6.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                    <!--<centralBaseUrl>https://central.sonatype.com</centralBaseUrl>-->
-                    <!--<autoPublish>true</autoPublish>
-                    <waitUntil>published</waitUntil>-->
-                    <skipPublishing>${skip.publish.to.central}</skipPublishing>
-                    <failOnBuildFailure>${fail.on.build.failure}</failOnBuildFailure>
-                </configuration>
             </plugin>
 
             <plugin>
