@@ -6,6 +6,8 @@
     <servers>
         <server>
             <id>github</id>
+            <name>Maven Central</name>
+            <url>https://central.sonatype.com</url>
         </server>
         <server>
             <id>central</id>
