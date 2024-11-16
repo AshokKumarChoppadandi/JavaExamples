@@ -48,6 +48,14 @@ jobs:
           distribution: 'zulu'
           # settings-path: .
 
-      # Build the Maven Project
-      - name: Step 3 - Build with Maven Project
-        run: mvn -B package --file pom.xml
+      # Publish the Maven Project to GitHub Packages
+      - name: Step 3 - Publish Maven Artifacts to GitHub Packages
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+
+      # Listing the files and directories
+      - name: Step 6 - List the built files
+        run: |
+          cd target
+          ls -a

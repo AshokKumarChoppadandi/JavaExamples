@@ -6,12 +6,42 @@
 
     <groupId>io.github.ashokkumarchoppadandi</groupId>
     <artifactId>java-examples</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A simple library with some basic hands-on examples on Java which will be useful for beginners who wanted to learn Java</description>
     <url>https://github.com/AshokKumarChoppadandi/JavaExamples</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Ashok Kumar Choppadandi</name>
+            <email>ashokkumar98778@gmail.com</email>
+            <organization>io.github.ashokkumarchoppadandi</organization>
+            <organizationUrl>https://github.com/AshokKumarChoppadandi</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/AshokKumarChoppadandi/JavaExamples.git</connection>
+        <developerConnection>scm:git:ssh://github.com:AshokKumarChoppadandi/JavaExamples.git</developerConnection>
+        <url>http://github.com/AshokKumarChoppadandi/JavaExamples/tree/main</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Ashok Kumar Choppadandi Maven Packages</name>
+            <url>https://maven.pkg.github.com/AshokKumarChoppadandi/JavaExamples</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -55,7 +85,7 @@
                 <version>3.5.0</version>
             </plugin>
 
-            <!-- Java Code Coverage Plugin -->
+            <!-- Java Code Coverage (Jacoco) Plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -94,6 +124,42 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Java Sources Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Java Docs Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
             </plugin>
         </plugins>
     </build>
