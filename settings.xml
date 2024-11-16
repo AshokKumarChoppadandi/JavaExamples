@@ -6,18 +6,20 @@
     <servers>
         <server>
             <id>github</id>
-            <name>Maven Central</name>
-            <url>https://central.sonatype.com</url>
+            <name>GitHub Ashok Kumar Choppadandi Maven Packages</name>
+            <url>https://maven.pkg.github.com/AshokKumarChoppadandi/JavaExamples</url>
         </server>
         <server>
             <id>central</id>
+            <name>Maven Central</name>
+            <url>https://central.sonatype.com</url>
             <username>${env.MAVEN_USERNAME}</username>
-            <password>${env.MAVEN_PASSWORD}</password>
+            <password>${env.MAVEN_CENTRAL_TOKEN}</password>
         </server>
 
-        <server>
+        <!--<server>
             <id>gpg.passphrase</id>
             <password>${env.SIGN_KEY_PASS}</password>
-        </server>
+        </server>-->
     </servers>
 </settings>
