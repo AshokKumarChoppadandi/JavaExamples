@@ -6,7 +6,7 @@
 
     <groupId>io.github.ashokkumarchoppadandi</groupId>
     <artifactId>java-examples</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -215,29 +215,20 @@
             </plugin>
 
             <!-- Sonatype Plugin to publish the artifacts to maven central repository -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
                 <version>0.6.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    &lt;!&ndash;<publishingServerId>central</publishingServerId>&ndash;&gt;
-                    <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
-                    &lt;!&ndash;<autoPublish>true</autoPublish>
-                    <waitUntil>published</waitUntil>&ndash;&gt;
+                    <publishingServerId>central</publishingServerId>
+                    <!--<centralBaseUrl>https://central.sonatype.com</centralBaseUrl>-->
+                    <!--<autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>-->
                     <skipPublishing>${skip.publish.to.central}</skipPublishing>
                     <failOnBuildFailure>${fail.on.build.failure}</failOnBuildFailure>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>deploy-central</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal></goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
