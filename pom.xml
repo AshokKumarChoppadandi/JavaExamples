@@ -35,23 +35,43 @@
         <url>http://github.com/AshokKumarChoppadandi/JavaExamples/tree/main</url>
     </scm>
 
-    <repositories>
-        <repository>
-            <id>github</id>
-            <name>GitHub Ashok Kumar Choppadandi Maven Packages</name>
-            <url>https://maven.pkg.github.com/AshokKumarChoppadandi/JavaExamples</url>
-        </repository>
-        <repository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>https://central.sonatype.com</url>
-        </repository>
-        <repository>
-            <id>maven</id>
-            <name>Maven Plugin Repository</name>
-            <url>https://repo1.maven.org/maven2</url>
-        </repository>
-    </repositories>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub Ashok Kumar Choppadandi Maven Packages</name>
+                    <url>https://maven.pkg.github.com/AshokKumarChoppadandi/JavaExamples</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+
+        <profile>
+            <id>qa</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub Ashok Kumar Choppadandi Maven Packages</name>
+                    <url>https://maven.pkg.github.com/AshokKumarChoppadandi/JavaExamples</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <distributionManagement>
+                <repository>
+                    <id>central</id>
+                    <name>Sonatype Maven Central</name>
+                    <url>https://central.sonatype.com</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
