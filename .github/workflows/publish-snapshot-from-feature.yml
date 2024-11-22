@@ -1,0 +1,62 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a SNAPSHOT is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Publish SNAPSHOT to GitHub Packages
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for all feature branches which starts with 'feature/'
+  push:
+    branches:
+      - feature/*
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "build"
+  build:
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Permissions of the GitHub token
+    permissions:
+      contents: read
+      packages: write
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      # Checks-out to the repository under $GITHUB_WORKSPACE, so the build job can access it
+      - name:  Step 1 - Checking out to main branch.
+        uses: actions/checkout@v4
+        with:
+          # path: repo
+          token: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+          persist-credentials: true
+
+      # Setting up the JDK 8
+      - name: Step 2 - Set up JDK 8 for publishing to GitHub packages
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'zulu'
+          # settings-path: .
+
+      # Publish the Maven Project to GitHub Packages
+      - name: Step 3 - Publish Maven Artifacts to GitHub Packages
+        # This activates the default profile - dev
+        run: mvn --batch-mode deploy -P dev
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+      # Listing files and directories in target directory
+      - name: Step 4 - List the built files
+        run: |
+          cd target
+          ls -a

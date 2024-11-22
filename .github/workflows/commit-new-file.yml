@@ -1,0 +1,61 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Build Maven Package and Publish to Maven Central
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Permissions of the GitHub token
+    permissions:
+      contents: read
+      packages: write
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out to the repository under $GITHUB_WORKSPACE, so the build job can access it
+      - name:  Step 1 - Checking out to main branch.
+        uses: actions/checkout@v4
+        with:
+          # path: repo
+          token: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+          persist-credentials: true
+
+      # Creates a new file
+      - name: Step 2 - Create a new file
+        shell: bash
+        run: |
+          echo "Test File $(date -R)" > TestFile.txt
+
+      # Listing files and directories in target directory
+      - name: Step 3 - List the built files
+        run: |
+          ls -al
+
+      # Configuring GitHub username and user email
+      - name: Step 4 - Configure Git USER & EMAIL
+        shell: bash
+        run: |
+          git config --global user.email "github-actions"
+          git config --global user.name "github-actions@github.com"
+
+      - name: Step 5 - Commit & Push
+        shell: bash
+        # working-directory: repo
+        run: |
+          git add .
+          git commit -m "Committed a new file from GitHub action"
+          git push
+
+      - name: Step 6 - Closing step
+        run: |
+          echo "Workflow execution completed."
