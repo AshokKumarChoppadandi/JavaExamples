@@ -9,7 +9,7 @@ on:
   push:
     branches:
       - main
-      - release
+      # - release
 
   pull_request:
     branches:
@@ -48,14 +48,28 @@ jobs:
           distribution: 'zulu'
           # settings-path: .
 
-      # Publish the Maven Project to GitHub Packages
-      - name: Step 3 - Publish Maven Artifacts to GitHub Packages
-        # This activates the default profile - dev
-        run: mvn --batch-mode deploy
+      - name: Step 3 - Prepare for release
+        run: mvn --batch-mode release:prepare
         env:
           GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
           MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+      - name: Step 4 - Perform the release
+        run: mvn --batch-mode release:perform
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+      # # Publish the Maven Project to GitHub Packages
+      # - name: Step 3 - Publish Maven Artifacts to GitHub Packages
+      #   # This activates the default profile - dev
+      #   run: mvn --batch-mode deploy
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+      #     MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+      #     MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       # # Setting up the JDK  8
       # - name: Step 4 - Set up JDK 8 for publishing to Maven Central
