@@ -48,20 +48,26 @@ jobs:
           distribution: 'zulu'
           # settings-path: .
 
-      - name: Step 3 - Set up GitHub User and Email
+      - name: Step 3 - Set up Public Key
         run: |
-          git config --global url."https://${{ secrets.MAVEN_PUBLISH_TOKEN }}@github.com/".insteadOf ssh://runner@github.com/
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MAVEN_GIT_PUBLIC_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Step 4 - Set up GitHub User and Email
+        run: |
           git config --global user.email "${{ vars.USER_EMAIL }}"
           git config --global user.name "${{ vars.USER_NAME }}"
 
-      - name: Step 3 - Prepare for release
+      - name: Step 5 - Prepare for release
         run: mvn --batch-mode release:prepare
         env:
           GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
           MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
-      - name: Step 4 - Perform the release
+      - name: Step 6 - Perform the release
         run: mvn --batch-mode release:perform
         env:
           GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
@@ -97,7 +103,7 @@ jobs:
       #     MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       # Listing files and directories in target directory
-      - name: Step 6 - List the built files
+      - name: Step 7 - List the built files
         run: |
           cd target
           ls -a
