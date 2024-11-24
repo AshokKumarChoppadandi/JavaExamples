@@ -48,6 +48,11 @@ jobs:
           distribution: 'zulu'
           # settings-path: .
 
+      - name: Step 3 - Set up GitHub User and Email
+        run: |
+          git config --global user.email "${{ vars.USER_EMAIL }}"
+          git config --global user.name "${{ vars.USER_NAME }}"
+
       - name: Step 3 - Prepare for release
         run: mvn --batch-mode release:prepare
         env:
