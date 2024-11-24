@@ -51,8 +51,8 @@ jobs:
       - name: Step 3 - Set up Public Key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.MAVEN_GIT_PUBLIC_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.MAVEN_GIT_PUBLIC_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Step 4 - Set up GitHub User and Email
