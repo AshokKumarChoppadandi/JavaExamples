@@ -54,25 +54,32 @@ jobs:
           echo "${{ secrets.MAVEN_GIT_PUBLIC_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-      - name: Step 4 - Set up GitHub User and Email
-        run: |
+          
           git config --global user.email "${{ vars.USER_EMAIL }}"
           git config --global user.name "${{ vars.USER_NAME }}"
+          
+          mvn --batch-mode release:prepare
+          
+          mvn --batch-mode release:perform
 
-      - name: Step 5 - Prepare for release
-        run: mvn --batch-mode release:prepare
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
-          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-
-      - name: Step 6 - Perform the release
-        run: mvn --batch-mode release:perform
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
-          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+      # - name: Step 4 - Set up GitHub User and Email
+      #   run: |
+      #     git config --global user.email "${{ vars.USER_EMAIL }}"
+      #     git config --global user.name "${{ vars.USER_NAME }}"
+      #
+      # - name: Step 5 - Prepare for release
+      #   run: mvn --batch-mode release:prepare
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+      #     MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+      #     MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+      #
+      # - name: Step 6 - Perform the release
+      #   run: mvn --batch-mode release:perform
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
+      #     MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+      #     MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       # # Publish the Maven Project to GitHub Packages
       # - name: Step 3 - Publish Maven Artifacts to GitHub Packages
