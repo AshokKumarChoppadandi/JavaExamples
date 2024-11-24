@@ -50,6 +50,7 @@ jobs:
 
       - name: Step 3 - Set up GitHub User and Email
         run: |
+          git config --global url."https://${{ secrets.MAVEN_PUBLISH_TOKEN }}@github.com/".insteadOf ssh://runner@github.com/
           git config --global user.email "${{ vars.USER_EMAIL }}"
           git config --global user.name "${{ vars.USER_NAME }}"
 
