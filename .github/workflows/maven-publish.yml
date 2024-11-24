@@ -13,7 +13,7 @@ on:
 
   pull_request:
     branches:
-      - main
+      # - main
       - release
 
   release:
@@ -57,24 +57,24 @@ jobs:
           MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
-      # Setting up the JDK  8
-      - name: Step 4 - Set up JDK 8 for publishing to Maven Central
-        uses: actions/setup-java@v4
-        with:
-          java-version: '8'
-          distribution: 'zulu'
-          server-id: central
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_CENTRAL_TOKEN
-
-      # Publish the Maven Project to Maven Central
-      - name: Step 5 - Publish Maven Artifacts to Maven Central
-        run: mvn -Dskip.publish.to.central=false -Dfail.on.build.failure=true --batch-mode deploy -P prod
-        env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-          MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+      # # Setting up the JDK  8
+      # - name: Step 4 - Set up JDK 8 for publishing to Maven Central
+      #   uses: actions/setup-java@v4
+      #   with:
+      #     java-version: '8'
+      #     distribution: 'zulu'
+      #     server-id: central
+      #     server-username: MAVEN_USERNAME
+      #     server-password: MAVEN_CENTRAL_TOKEN
+      #
+      # # Publish the Maven Project to Maven Central
+      # - name: Step 5 - Publish Maven Artifacts to Maven Central
+      #   run: mvn -Dskip.publish.to.central=false -Dfail.on.build.failure=true --batch-mode deploy -P prod
+      #   env:
+      #     MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+      #     MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+      #     MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+      #     MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
       # Listing files and directories in target directory
       - name: Step 6 - List the built files
