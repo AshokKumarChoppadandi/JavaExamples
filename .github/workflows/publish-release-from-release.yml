@@ -48,7 +48,7 @@ jobs:
           git config --global user.name "github-actions@github.com"
 
       - name: Step 5 - GitHub Packages - Prepare for release
-        run: mvn --batch-mode release:prepare
+        run: mvn --batch-mode release:branch
         env:
           GITHUB_TOKEN: ${{ secrets.MAVEN_PUBLISH_TOKEN }}
           MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}

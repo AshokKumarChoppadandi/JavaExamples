@@ -32,8 +32,8 @@
         <connection>scm:git:git://github.com/AshokKumarChoppadandi/JavaExamples.git</connection>
         <developerConnection>scm:git:https://github.com/AshokKumarChoppadandi/JavaExamples.git</developerConnection>
         <url>http://github.com/AshokKumarChoppadandi/JavaExamples/tree/main</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>${artifactId}-${version}</tag>
+    </scm>
 
     <profiles>
         <profile>
