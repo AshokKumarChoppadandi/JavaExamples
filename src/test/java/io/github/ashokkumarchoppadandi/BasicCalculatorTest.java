@@ -26,6 +26,13 @@ public class BasicCalculatorTest {
         Assertions.assertEquals(actual, Math.pow(10, 3));
     }
 
+    @Test
+    public void testToUpperCase() {
+        String inputString = "hello";
+        String actual = basicCalculator.toUpperCase(inputString);
+        Assertions.assertEquals(actual, inputString.toUpperCase());
+    }
+
     @AfterAll
     public static void exitUnitTests() {
         System.out.println("All unit tests execution completed.");
