@@ -28,4 +28,13 @@ public class BasicCalculator {
     public double power(double a, double b) {
         return Math.pow(a, b);
     }
+
+    /**
+     * A simple `toUpperCase` method to convert the given input string to uppercase
+     * @param str String - input argument of String type
+     * @return String - Uppercase string
+     */
+    public String toUpperCase(String str) {
+        return str.toUpperCase();
+    }
 }

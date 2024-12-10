@@ -7,7 +7,7 @@
     <groupId>io.github.ashokkumarchoppadandi</groupId>
     <artifactId>java-examples</artifactId>
     <!--Maven Central will not allow snapshot versions-->
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -88,13 +88,13 @@
                                 </goals>
                                 <configuration>
                                     <!--This is required to build the Maven Artifact in local-->
-                                    <keyname>${gpg.keyname}</keyname>
+                                    <!--<keyname>${gpg.keyname}</keyname>
                                     <passphrase>${gpg.keyname}</passphrase>
                                     <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
+                                        <arg>&#45;&#45;pinentry-mode</arg>
                                         <arg>loopback</arg>
-                                    </gpgArguments>
-                                    <!--<signer>bc</signer>-->
+                                    </gpgArguments>-->
+                                    <signer>bc</signer>
                                 </configuration>
                             </execution>
                         </executions>
