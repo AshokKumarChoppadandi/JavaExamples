@@ -33,6 +33,54 @@ public class BasicCalculatorTest {
         Assertions.assertEquals(actual, inputString.toUpperCase());
     }
 
+    @Test
+    public void testToUpperCaseWithNullInput() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            basicCalculator.toUpperCase(null);
+        });
+    }
+
+    @Test
+    public void testToUpperCaseWithEmptyInput() {
+        String inputString = "";
+        String actual = basicCalculator.toUpperCase(inputString);
+        Assertions.assertEquals(actual, inputString.toUpperCase());
+    }
+
+    @Test
+    public void testToUpperCaseWithMixedCaseInput() {
+        String inputString = "HeLLo";
+        String actual = basicCalculator.toUpperCase(inputString);
+        Assertions.assertEquals(actual, inputString.toUpperCase());
+    }
+
+    @Test
+    public void testToUpperCaseWithSpecialCharacters() {
+        String inputString = "hello!";
+        String actual = basicCalculator.toUpperCase(inputString);
+        Assertions.assertEquals(actual, inputString.toUpperCase());
+    }
+
+    @Test
+    public void testToUpperCaseWithNumbers() {
+        String inputString = "hello123";
+        String actual = basicCalculator.toUpperCase(inputString);
+        Assertions.assertEquals(actual, inputString.toUpperCase());
+    }
+
+    @Test
+    public void testToUpperCaseWithWhitespace() {
+        String inputString = "hello world";
+        String actual = basicCalculator.toUpperCase(inputString);
+        Assertions.assertEquals(actual, inputString.toUpperCase());
+    }
+
+    @AfterAll
+    public static void destroyBasicCalculatorObject() {
+        basicCalculator = null;
+        System.out.println("Destroyed Basic Calculator Object.");
+    }
+
     @AfterAll
     public static void exitUnitTests() {
         System.out.println("All unit tests execution completed.");
