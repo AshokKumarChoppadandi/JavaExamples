@@ -30,11 +30,30 @@ public class BasicCalculator {
     }
 
     /**
-     * A simple `toUpperCase` method to convert the given input string to uppercase
-     * @param str String - input argument of String type
-     * @return String - Uppercase string
+     * Converts the input string to uppercase.
+     *
+     * @param str the string to convert
+     * @return the uppercase version of the input string
+     * @throws NullPointerException if the input string is null
      */
     public String toUpperCase(String str) {
+        if (str == null) {
+            throw new NullPointerException("Input string cannot be null");
+        }
         return str.toUpperCase();
+    }
+
+    /**
+     * Converts the input string to lowercase.
+     *
+     * @param str the string to convert
+     * @return the lowercase version of the input string
+     * @throws NullPointerException if the input string is null
+     */
+    public String toLowerCase(String str) {
+        if (str == null) {
+            throw new NullPointerException("Input string cannot be null");
+        }
+        return str.toLowerCase();
     }
 }
