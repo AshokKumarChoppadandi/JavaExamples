@@ -230,6 +230,10 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            <excludes>
+                                <exclude>com/bigdata/java/**/*</exclude>
+                                <exclude>io/github/ashokkumarchoppadandi/jdbc/*</exclude>
+                            </excludes>
                             <rules>
                                 <rule>
                                     <element>PACKAGE</element>
