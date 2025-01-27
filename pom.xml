@@ -32,7 +32,7 @@
         <connection>scm:git:git://github.com/AshokKumarChoppadandi/JavaExamples.git</connection>
         <developerConnection>scm:git:https://github.com/AshokKumarChoppadandi/JavaExamples.git</developerConnection>
         <url>http://github.com/AshokKumarChoppadandi/JavaExamples/tree/main</url>
-        <tag>release/1.2.8</tag>
+        <tag>v${project.version}</tag>
     </scm>
 
     <profiles>
@@ -287,6 +287,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>3.1.1</version>
+                <configuration>
+                    <preparationGoals>package</preparationGoals>
+                    <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+                    <tagNameFormat>v${project.version}</tagNameFormat>
+                    <remoteTagging>false</remoteTagging>
+                </configuration>
             </plugin>
         </plugins>
     </build>
